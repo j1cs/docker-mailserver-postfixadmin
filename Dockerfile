@@ -1,8 +1,8 @@
 FROM php:7.4-apache
 LABEL maintainer="Ralph Schuster <github@ralph-schuster.eu>"
 
-RUN apt-get update &&  apt-get update && apt-get install -y --no-install-recommends \
-    patch \
+RUN apt-get update &&  apt-get update && apt-get install -y --no-install-recommends patch \
+    && docker-php-ext-install -j$(nproc) mysqli \
     && rm -rf /var/lib/apt/lists/*
 
 #ADD etc/php/ /usr/local/etc/php/conf.d/
